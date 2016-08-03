@@ -1,10 +1,10 @@
 from time import sleep #For waiting a specific number of seconds
-from random import randint #For generateing a random integer
+from random import randint, uniform #For generateing a random integer
 import os #For system control
 
 
 def getCoordinate(minTime,maxTime,effects): #waits a number of seconds, finds a random coordinate, checks if this coordinate has already been hit, if not it hits it
-    time = randint(minTime,maxTime) * 60 #60 to get time from seconds to minutes; time is the amount of time to wait
+    time = uniform(minTime,maxTime) * 60 #60 to get time from seconds to minutes; time is the amount of time to wait
     sleep(time) #waits for "time" seconds
     
     while True: #run until a coordinate which has not been hit before has been hit

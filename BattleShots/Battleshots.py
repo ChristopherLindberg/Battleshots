@@ -30,22 +30,22 @@ def effectValue(): #An effect is chosen
     lower_value=1
     final_value = randint(lower_value, higher_value)
     #print(final_value)
-    if final_value > 0 and final_value <6:
+    if 0 < final_value < 6:
         print('Cluster Bomb!')
         effect='a'
-    elif final_value > 5 and final_value < 41:
+    elif 5 < final_value < 41:
         print('Airstrike!')
         effect='b'
-    elif final_value > 40 and final_value < 51:
+    elif 40 < final_value < 51:
         print('Heat seeking missile!')
         effect='c'
-    elif final_value > 50 and final_value < 61:
+    elif 50 < final_value < 61:
         print('Nothing happens')
         effect='d'
-    elif final_value > 60 and final_value < 81:
+    elif 60 < final_value < 81:
         print('Fællesskål!')
         effect='e'
-    elif final_value > 80 and final_value < 96:
+    elif 80 < final_value < 96:
         print('Shots!')
         effect='f'
     else: #ranges from 96 to 99; 96 < final_value < 100

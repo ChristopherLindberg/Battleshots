@@ -1,10 +1,10 @@
 from time import sleep #For waiting a specific number of seconds
-from random import randint, uniform #For generateing a random integer
+from random import randint, uniform, choice #For generateing a random integer
 import os #For system control
 
 
 def getCoordinate(minTime,maxTime,effects): #waits a number of seconds, finds a random coordinate, checks if this coordinate has already been hit, if not it hits it
-    time = uniform(minTime,maxTime) * 60 #60 to get time from seconds to minutes; time is the amount of time to wait
+    time = uniform(minTime,maxTime) * 5 #60 to get time from seconds to minutes; time is the amount of time to wait
     sleep(time) #waits for "time" seconds
     
     while True: #run until a coordinate which has not been hit before has been hit
@@ -25,10 +25,41 @@ def getCoordinate(minTime,maxTime,effects): #waits a number of seconds, finds a 
             used_Coordinates_Letters.append(coordinate_Letters)
             break;
 
+def EffectValue(): #An effect is chosen
+    higher_value=99
+    lower_value=1
+    final_value = randint(lower_value, higher_value)
+    #print(final_value)
+    if final_value > 0 and final_value <6:
+        print('Cluster Bomb!')
+        effect='a'
+    elif final_value > 5 and final_value < 41:
+        print('Airstrike!')
+        effect='b'
+    elif final_value > 40 and final_value < 51:
+        print('Heat seeking missile!')
+        effect='c'
+    elif final_value > 50 and final_value < 61:
+        print('Nothing happens')
+        effect='d'
+    elif final_value > 60 and final_value < 81:
+        print('Fællesskål!')
+        effect='e'
+    elif final_value > 80 and final_value < 96:
+        print('Shots!')
+        effect='f'
+    elif final_value > 95 and final_value < 100:
+        print('something else!')
+        effect='g'
+    return effect
+
 def airStrike(effects,x,y): #display sounds and message
     os.system('CLS') #clear screen - equal to matlab cls
     print("(" + x + "," + str(y) + ")") #print coordinate
-    print(effects[randint(0,len(effects)-1)]) #-1 due to zero index; print message
+    effects=EffectValue()
+    if effects == 'c':
+        Player=choice(PlayerPool)
+        print(Player+" is awarded a heat seeking missile!")
     os.startfile('Airstrike+sound+effect.mp3')# play sound
     
 
@@ -40,7 +71,9 @@ used_Coordinates_Letters = [];
 minTime = 0; #min wait time
 maxTime = 1; #max wait time
 
-effects = ('a','b','c'); #messages about what's going to happen
+effects = EffectValue(); #messages about what's going to happen
+
+PlayerPool= ('Thomas',"Milos","Christopher") #Fill out before each game
 
 while True: #keep running until game is done
     getCoordinate(minTime,maxTime,effects)

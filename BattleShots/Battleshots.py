@@ -21,18 +21,15 @@ def getCoordinate(minTime,maxTime): #waits a number of seconds, finds a random c
         if(notAlreadyHit): #if the coordinate has not been hit, call airstrike to display what's going to happen and play sound
 #            system('CLS') #clear screen - equal to matlab cls        
             saveCoordinate,clusterBomb = effectValue()            
-            airStrike(coordinate_Letters,coordinate_Numbers)
             
             if(saveCoordinate):
                 used_Coordinates_Numbers.append(coordinate_Numbers) #add to already hit numbers,letters
                 used_Coordinates_Letters.append(coordinate_Letters)
+                airStrike(coordinate_Letters,coordinate_Numbers)    
                 
-                
-            coordinate_Letters = 'J'
-            coordinate_Numbers = 1
                 
             if(clusterBomb):
-                
+                airStrike(coordinate_Letters,coordinate_Numbers)
             #even though the try except block works. It will sometimes give a result due to pythons negative index of lists.
             #To avoid that the index have been set to positive by the two if statements below.
             #This is done since the negative index can at most be -9 so setting this to 0 just shifts the for 
@@ -58,7 +55,6 @@ def getCoordinate(minTime,maxTime): #waits a number of seconds, finds a random c
                             used_Coordinates_Letters.append(letters[i])
                         except:
                             pass
-                
             break;
 
 def effectValue(): #An effect is chosen
@@ -121,15 +117,16 @@ numbers = (1,2,3,4,5,6,7,8,9,10); #possible numbers
 used_Coordinates_Numbers = []; # coordinates which have already been hit
 used_Coordinates_Letters = []; 
 
-minMinutes = int(input("Enter minimum minutes to wait")) #minimum minutes to wait
-minSeconds = int(input("Enter minimum seconds to wait")) #minimum seconds to wait
+minMinutes = int(input("Enter minimum minutes to wait ")) #minimum minutes to wait
+minSeconds = int(input("Enter minimum seconds to wait ")) #minimum seconds to wait
 
-maxMinutes = int(input("Enter maximum minutes to wait")) #maximum minutes to wait
-maxSeconds = int(input("Enter maximum seconds to wait")) #maximum seconds to wait
+maxMinutes = int(input("Enter maximum minutes to wait ")) #maximum minutes to wait
+maxSeconds = int(input("Enter maximum seconds to wait ")) #maximum seconds to wait
 
 minTime = 60*minMinutes + minSeconds; #min wait time in seconds
 
 maxTime = 60*maxMinutes + maxSeconds; #max wait time in seconds
 
+system('CLS') #clear screen - equal to matlab cls 
 while True: #keep running until game is done
     getCoordinate(minTime,maxTime)

@@ -19,17 +19,17 @@ def getCoordinate(minTime,maxTime): #waits a number of seconds, finds a random c
                 break; #breaks the for loop since the coordinate has already been hit
             
         if(notAlreadyHit): #if the coordinate has not been hit, call airstrike to display what's going to happen and play sound
-#            system('CLS') #clear screen - equal to matlab cls        
+            system('CLS') #clear screen - equal to matlab cls        
             saveCoordinate,clusterBomb = effectValue()            
-            
+            airStrike()
             if(saveCoordinate):
                 used_Coordinates_Numbers.append(coordinate_Numbers) #add to already hit numbers,letters
                 used_Coordinates_Letters.append(coordinate_Letters)
-                airStrike(coordinate_Letters,coordinate_Numbers)    
+                print("(" + coordinate_Letters + "," + str(coordinate_Numbers) + ")") #print coordinate  
                 
                 
             if(clusterBomb):
-                airStrike(coordinate_Letters,coordinate_Numbers)
+                print("(" + coordinate_Letters + "," + str(coordinate_Numbers) + ")") #print coordinate
             #even though the try except block works. It will sometimes give a result due to pythons negative index of lists.
             #To avoid that the index have been set to positive by the two if statements below.
             #This is done since the negative index can at most be -9 so setting this to 0 just shifts the for 
@@ -100,9 +100,8 @@ def effectValue(): #An effect is chosen
         
     return saveCoordinate,clusterBomb
 
-def airStrike(letter,number): #display sounds and message
-    print("(" + letter + "," + str(number) + ")") #print coordinate
-#    startfile('Airstrike+sound+effect.mp3')# play sound
+def airStrike(): #display sounds and message
+    startfile('Airstrike+sound+effect.mp3')# play sound
     
     
 PlayerPool = (); #init
